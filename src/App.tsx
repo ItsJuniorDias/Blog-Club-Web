@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const schema = z.object({
   name: z.string("* Name is required.").min(1),
-  email: z.string("* Invalid email.").email(),
+  email: z.string("* Email is required.").email(),
   message: z.string().optional(),
 });
 
