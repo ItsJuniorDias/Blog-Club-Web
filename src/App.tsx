@@ -45,11 +45,15 @@ export default function App() {
                 render={({ field }) => (
                   <input
                     {...field}
-                    className="w-full p-3 bg-[#f1f1f1] rounded-2xl"
+                    className={`w-full p-3 bg-[#f1f1f1] rounded-2xl  ${
+                      errors.name &&
+                      "border-2 border-red-500 focus:outline-none"
+                    } `}
                     placeholder="Enter your name"
                   />
                 )}
               />
+
               {errors.name && (
                 <div className="pb">
                   <span className="text-red-500">{errors.name.message}</span>
@@ -62,7 +66,10 @@ export default function App() {
                 render={({ field }) => (
                   <input
                     {...field}
-                    className="w-full p-3 bg-[#f1f1f1] rounded-2xl"
+                    className={`w-full p-3 bg-[#f1f1f1] rounded-2xl ${
+                      errors.name &&
+                      "border-2 border-red-500 focus:outline-none"
+                    } `}
                     placeholder="Enter your email"
                   />
                 )}
@@ -79,7 +86,7 @@ export default function App() {
                 render={({ field }) => (
                   <textarea
                     {...field}
-                    className="w-full p-3 bg-[#f1f1f1] rounded-2xl"
+                    className="w-full p-3 bg-[#f1f1f1] rounded-2xl "
                     placeholder="Enter a message"
                   />
                 )}
