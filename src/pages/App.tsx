@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import background from "./assets/background.png";
+import background from "../assets/background.png";
 
-import { addDoc, collection, db } from "../firebaseConfig";
+import { addDoc, collection, db } from "../../firebaseConfig";
 
-import { redirect } from "react-router";
+import { redirect, useNavigate } from "react-router";
 
-import Modal from "./components/modal/index";
+import Modal from "../components/modal/index";
 
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+
 import { toast, ToastContainer } from "react-toastify";
 
 const schema = z.object({
@@ -31,6 +31,8 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   const [isError, setIsError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000); // Simula carregamento
@@ -73,8 +75,6 @@ export default function App() {
 
   const onSubmit = async (data: FormData) => {
     const response = await validadeEmail(data.email);
-
-    console.log(response.data.status !== "invalid", "CONDITION");
 
     if (response.data.status !== "invalid") {
       await addDoc(collection(db, "emails"), {

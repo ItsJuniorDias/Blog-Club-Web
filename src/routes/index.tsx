@@ -1,9 +1,16 @@
-import { type RouteConfig, route } from "@react-router/dev/routes";
-import { flatRoutes } from "@react-router/fs-routes";
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "../pages/App";
+import Redirect from "../pages/Redirect";
 
-export default [
-  route("/", "./App.tsx"),
-  route("/redirect", "./Redirect.tsx"),
+function App() {
+  return (
+    <div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/redirect" element={<Redirect />} />
+      </Routes>
+    </div>
+  );
+}
 
-  ...(await flatRoutes()),
-] satisfies RouteConfig;
+export default App;
