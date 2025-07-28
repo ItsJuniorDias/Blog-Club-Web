@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import background from "./assets/background.png";
+
+import { addDoc, collection, db } from "../firebaseConfig";
+
+import Modal from "./components/modal/index";
+
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 
 const schema = z.object({
   name: z.string("* Name is required.").min(1),
@@ -13,17 +19,62 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function App() {
+  const [open, setOpen] = useState(false);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); // Simula carregamento
+    return () => clearTimeout(timer);
+  }, []);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    clearErrors,
+    setValue,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      email: "",
+      message: "",
+      name: "",
+    },
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log("DATA FORM", data);
+
+    try {
+      const docRef = await addDoc(collection(db, "emails"), {
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        createdAt: new Date(),
+      });
+
+      setOpen(true);
+
+      setValue("name", "");
+      setValue("email", "");
+      setValue("message", "");
+
+      console.log(docRef, "DOC REF");
+    } catch (e) {
+      alert(e);
+
+      console.error("Erro ao cadastrar email: ", e);
+    }
   };
+
+  const mutation = useMutation({
+    mutationFn: handleSubmit(onSubmit),
+    onSuccess: () => {
+      // // Invalidate and refetch
+      // queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  });
 
   return (
     <>
@@ -38,13 +89,23 @@ export default function App() {
               Sign up to receive exclusive content and updates.
             </p>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <form
+              onSubmit={(data) => mutation.mutate(data)}
+              className="space-y-4"
+            >
               <Controller
                 name="name"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, value } }) => (
                   <input
-                    {...field}
+                    value={value}
+                    onChange={(text) => {
+                      onChange(text);
+
+                      if (errors.name) {
+                        clearErrors("name");
+                      }
+                    }}
                     className={`w-full p-3 bg-[#f1f1f1] rounded-2xl  ${
                       errors.name &&
                       "border-2 border-red-500 focus:outline-none"
@@ -63,11 +124,18 @@ export default function App() {
               <Controller
                 name="email"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, value } }) => (
                   <input
-                    {...field}
+                    value={value}
+                    onChange={(text) => {
+                      onChange(text);
+
+                      if (errors.email) {
+                        clearErrors("email");
+                      }
+                    }}
                     className={`w-full p-3 bg-[#f1f1f1] rounded-2xl ${
-                      errors.name &&
+                      errors.email &&
                       "border-2 border-red-500 focus:outline-none"
                     } `}
                     placeholder="Enter your email"
@@ -83,9 +151,16 @@ export default function App() {
               <Controller
                 name="message"
                 control={control}
-                render={({ field }) => (
+                render={({ field: { onChange, value } }) => (
                   <textarea
-                    {...field}
+                    value={value}
+                    onChange={(text) => {
+                      onChange(text);
+
+                      if (errors.message) {
+                        clearErrors("message");
+                      }
+                    }}
                     className="w-full p-3 bg-[#f1f1f1] rounded-2xl "
                     placeholder="Enter a message"
                   />
@@ -95,7 +170,6 @@ export default function App() {
               <button
                 type="submit"
                 className="w-full bg-[#376AED] text-white px-4 py-3 rounded-2xl"
-                onClick={() => handleSubmit(onSubmit)}
               >
                 Send
               </button>
@@ -111,6 +185,8 @@ export default function App() {
           </div>
         </div>
       </div>
+
+      <Modal isOpen={open} onClose={() => setOpen(false)} />
     </>
   );
 }
