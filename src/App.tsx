@@ -3,25 +3,34 @@ import background from "./assets/background.png";
 
 import { addDoc, collection, db } from "../firebaseConfig";
 
+import { redirect } from "react-router";
+
 import Modal from "./components/modal/index";
 
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 const schema = z.object({
   name: z.string("* Name is required.").min(1),
   email: z.string("* Email is required.").email(),
   message: z.string().optional(),
+  status: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
+
+const API_KEY = "2b2f58d7b2c78894ee8c26626e77f64fa08fd16b";
 
 export default function App() {
   const [open, setOpen] = useState(false);
 
   const [loading, setLoading] = useState(true);
+
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000); // Simula carregamento
@@ -40,14 +49,35 @@ export default function App() {
       email: "",
       message: "",
       name: "",
+      status: "valid",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    console.log("DATA FORM", data);
+  const validadeEmail = async (email: string) => {
+    const url = `https://api.hunter.io/v2/email-verifier?email=${encodeURIComponent(
+      email
+    )}&api_key=${API_KEY}`;
 
-    try {
-      const docRef = await addDoc(collection(db, "emails"), {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Erro na API: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+
+    console.log(data, "DATA");
+
+    return data;
+  };
+
+  const onSubmit = async (data: FormData) => {
+    const response = await validadeEmail(data.email);
+
+    console.log(response.data.status !== "invalid", "CONDITION");
+
+    if (response.data.status !== "invalid") {
+      await addDoc(collection(db, "emails"), {
         name: data.name,
         email: data.email,
         message: data.message,
@@ -55,25 +85,20 @@ export default function App() {
       });
 
       setOpen(true);
-
-      setValue("name", "");
-      setValue("email", "");
-      setValue("message", "");
-
-      console.log(docRef, "DOC REF");
-    } catch (e) {
-      alert(e);
-
-      console.error("Erro ao cadastrar email: ", e);
+      setIsError(false);
+    } else {
+      setOpen(true);
+      setIsError(true);
     }
+
+    setValue("name", "");
+    setValue("email", "");
+    setValue("message", "");
   };
 
   const mutation = useMutation({
     mutationFn: handleSubmit(onSubmit),
-    onSuccess: () => {
-      // // Invalidate and refetch
-      // queryClient.invalidateQueries({ queryKey: ['todos'] })
-    },
+    onSuccess: () => {},
   });
 
   return (
@@ -186,7 +211,7 @@ export default function App() {
         </div>
       </div>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)} />
+      <Modal isOpen={open} onClose={() => setOpen(false)} isError={isError} />
     </>
   );
 }
