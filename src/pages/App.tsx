@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import background from "../assets/background.png";
 
-import { addDoc, collection, db } from "../../firebaseConfig";
+import { addDoc, collection, db, doc } from "../../firebaseConfig";
 
 import { redirect, useNavigate } from "react-router";
 
@@ -13,6 +13,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 import { toast, ToastContainer } from "react-toastify";
+import { getDoc, getDocs } from "@firebase/firestore";
+import SniperCard from "../components/spiner";
+import Spinner from "../components/spiner";
 
 const schema = z.object({
   name: z.string("* Name is required.").min(1),
@@ -68,15 +71,21 @@ export default function App() {
 
     const data = await response.json();
 
-    console.log(data, "DATA");
-
     return data;
   };
 
   const onSubmit = async (data: FormData) => {
     const response = await validadeEmail(data.email);
 
-    if (response.data.status !== "invalid") {
+    const docRef = collection(db, "emails");
+
+    const docSnap = await getDocs(docRef);
+
+    const filterEmail = docSnap.docs.find(
+      (item) => item.data().email === data.email
+    );
+
+    if (response.data.status !== "invalid" && !filterEmail?.data()) {
       await addDoc(collection(db, "emails"), {
         name: data.name,
         email: data.email,
@@ -196,7 +205,7 @@ export default function App() {
                 type="submit"
                 className="w-full bg-[#376AED] text-white px-4 py-3 rounded-2xl"
               >
-                Send
+                {mutation.isPending ? <Spinner /> : "Send"}
               </button>
             </form>
           </div>
