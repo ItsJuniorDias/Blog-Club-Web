@@ -6,7 +6,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 
 import success from "../../assets/success.svg";
 
-export default function Modal({ isOpen, onClose, isError }) {
+export default function Modal({ isOpen, onClose, error }) {
   if (!isOpen) return null;
 
   return (
@@ -20,24 +20,26 @@ export default function Modal({ isOpen, onClose, isError }) {
         </button>
 
         <div className="w-full flex items-center justify-center pt-5 pb-5">
-          {isError && <IoMdCloseCircle color="#FF0000" className="w-10 h-10" />}
+          {error.isError && (
+            <IoMdCloseCircle color="#FF0000" className="w-10 h-10" />
+          )}
 
-          {!isError && (
+          {!error.isError && (
             <FaCircleCheck
-              color={isError ? "" : "#4bae4f"}
+              color={error.isError ? "" : "#4bae4f"}
               className="w-13 h-13"
             />
           )}
         </div>
 
         <h2 className="text-xl font-bold text-center mb-2">
-          {isError && "something went wrong with your email is invalid"}
-          {!isError && "Thanks for contacting us!"}
+          {error.isError && error.message}
+          {!error.isError && "Thanks for contacting us!"}
         </h2>
 
         <p className="text-center text-gray-600">
-          {isError && "We will return your message shortly."}
-          {!isError && "We will return your message shortly."}
+          {error.isError && "We will return your message shortly."}
+          {!error.isError && "We will return your message shortly."}
         </p>
 
         <button
