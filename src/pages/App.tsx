@@ -3,8 +3,6 @@ import background from "../assets/background.png";
 
 import { addDoc, collection, db, doc } from "../../firebaseConfig";
 
-import { redirect, useNavigate } from "react-router";
-
 import Modal from "../components/modal/index";
 
 import { useForm, Controller } from "react-hook-form";
