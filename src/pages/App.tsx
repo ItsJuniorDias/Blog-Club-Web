@@ -36,8 +36,6 @@ export default function App() {
     message: "",
   });
 
-  const navigate = useNavigate();
-
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000); // Simula carregamento
     return () => clearTimeout(timer);

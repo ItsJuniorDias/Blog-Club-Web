@@ -4,12 +4,12 @@ import Redirect from "../pages/Redirect";
 
 function App() {
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/redirect" element={<Redirect />} />
       </Routes>
-    </div>
+    </>
   );
 }
 
