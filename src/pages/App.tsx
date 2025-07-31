@@ -31,7 +31,10 @@ export default function App() {
 
   const [loading, setLoading] = useState(true);
 
-  const [isError, setIsError] = useState(false);
+  const [error, setError] = useState({
+    isError: false,
+    message: "",
+  });
 
   const navigate = useNavigate();
 
@@ -83,7 +86,17 @@ export default function App() {
       (item) => item.data().email === data.email
     );
 
-    if (response.data.status !== "invalid" && !filterEmail?.data()) {
+    if (!!filterEmail?.data()) {
+      setOpen(true);
+
+      return setError((prevState) => ({
+        ...prevState,
+        isError: true,
+        message: "Your email has already been registered",
+      }));
+    }
+
+    if (response.data.status !== "invalid") {
       await addDoc(collection(db, "emails"), {
         name: data.name,
         email: data.email,
@@ -92,10 +105,20 @@ export default function App() {
       });
 
       setOpen(true);
-      setIsError(false);
+
+      setError((prevState) => ({
+        ...prevState,
+        isError: false,
+        message: "",
+      }));
     } else {
       setOpen(true);
-      setIsError(true);
+
+      setError((prevState) => ({
+        ...prevState,
+        isError: true,
+        message: "something went wrong with your email is invalid",
+      }));
     }
 
     setValue("name", "");
@@ -218,7 +241,7 @@ export default function App() {
         </div>
       </div>
 
-      <Modal isOpen={open} onClose={() => setOpen(false)} isError={isError} />
+      <Modal isOpen={open} onClose={() => setOpen(false)} error={error} />
     </>
   );
 }
