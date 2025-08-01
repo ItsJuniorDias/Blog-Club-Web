@@ -246,7 +246,7 @@ export default function App() {
         </div>
       </div>
 
-      <div className="w-full min-h-screen bg-[#F8F8F8] flex flex-col lg:flex-row items-center justify-center p-4">
+      <div className="w-full min-h-screen  bg-[#F8F8F8] flex flex-col lg:flex-row items-center justify-center p-4">
         <div className="w-full lg:w-1/2 flex items-center justify-center mb-6 lg:mb-0">
           <img
             src={custom_tech}
@@ -256,7 +256,7 @@ export default function App() {
         </div>
 
         <div className="w-full lg:w-1/2 flex items-center justify-center">
-          <div className="w-full max-w-[637px] bg-white shadow-lg rounded-2xl p-4 sm:p-6 md:p-8">
+          <div className="w-full max-w-[637px] bg-white shadow-lg rounded-2xl p-4 sm:p-6 md:p-8 lg:mr-[120px]">
             <h5 className="text-2xl sm:text-3xl font-medium text-[#376AED]">
               About the Blog Club
             </h5>
