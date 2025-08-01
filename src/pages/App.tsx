@@ -137,9 +137,9 @@ export default function App() {
     <>
       <div
         id="topo"
-        className="min-h-screen bg-gradient-to-br bg-white flex items-center justify-center"
+        className="min-h-screen sm:min-h-auto bg-gradient-to-br bg-white flex items-center justify-center"
       >
-        <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden">
+        <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden sm:">
           <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
               Welcome to the <span className="text-blue-600">Blog Club</span>
@@ -246,30 +246,30 @@ export default function App() {
         </div>
       </div>
 
-      <div className="w-full h-[732px] bg-[#F8F8F8] flex">
-        <div className="w-1/2 flex items-center justify-center">
+      <div className="w-full min-h-screen bg-[#F8F8F8] flex flex-col lg:flex-row items-center justify-center p-4">
+        <div className="w-full lg:w-1/2 flex items-center justify-center mb-6 lg:mb-0">
           <img
             src={custom_tech}
             alt="tech"
-            className="w-[410px] h-[500 px] object-cover hidden md:block"
+            className="w-[300px] sm:w-[350px] md:w-[410px] h-auto object-cover"
           />
         </div>
 
-        <div className=" flex items-center pr-[120px] justify-center  w-1/2">
-          <div className="w-[637px] h-auto bg-white shadow-lg rounded-4xl p-8 hidden md:block ">
-            <h5 className="text-3xl font-medium text-[#376AED]">
+        <div className="w-full lg:w-1/2 flex items-center justify-center">
+          <div className="w-full max-w-[637px] bg-white shadow-lg rounded-2xl p-4 sm:p-6 md:p-8">
+            <h5 className="text-2xl sm:text-3xl font-medium text-[#376AED]">
               About the Blog Club
             </h5>
 
-            <h1 className="text-[16px] leading-7  font-medium mt-8 text-gray-700">
+            <p className="text-base leading-7 font-medium mt-6 text-gray-700">
               Blog Club is a mobile app developed with React Native and Expo SDK
               53, designed to connect readers, writers, and content enthusiasts
               in one place. With a modern and intuitive interface, the app
               allows users to discover new blogs, follow favorite authors, and
               participate in discussions through comments and direct messages.
-            </h1>
+            </p>
 
-            <h1 className="text-[16px] leading-7  font-medium mt-8 text-gray-700">
+            <p className="text-base leading-7 font-medium mt-6 text-gray-700">
               Our goal is to make the reading experience more interactive and
               social. Therefore, we've integrated features such as real-time
               notifications, a favorites system, and a community area for
@@ -277,48 +277,46 @@ export default function App() {
               flexibility provided by React Native technology. Whether you're a
               content creator or someone looking for a good read, Blog Club is
               the ideal space to explore, share, and connect.
-            </h1>
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="w-full h-auto  pl-[140px] pr-[140px]">
-        <div className="flex justify-between items-center  w-full h-[139px] bg-[#262626] p-8 rounded-3xl mt-[130px]">
-          <div>
-            <h5 className="text-[24px] text-white">
+      <div className="w-full px-4 sm:px-8 md:px-[140px]">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full bg-[#262626] p-6 md:p-8 rounded-3xl mt-20">
+          <div className="text-white mb-6 md:mb-0 md:mr-4 max-w-xl">
+            <h5 className="text-xl md:text-2xl mb-2">
               Want to know more about Blog Club?
             </h5>
-
-            <h1 className=" text-white  ">
+            <p className="text-sm md:text-base">
               Fill out the form above or contact us. We'll show you how Blog
               Club can transform your blogging experience!
-            </h1>
+            </p>
           </div>
 
           <a
             href="#topo"
-            className="flex items-center justify-center w-[162px] h-[60px] bg-[#376AED]  hover:bg-[#2c57c2] text-white rounded-2xl"
+            className="w-full sm:w-[162px] h-[50px] sm:h-[60px] bg-[#376AED] hover:bg-[#2c57c2] text-white rounded-2xl flex items-center justify-center self-end md:self-auto"
           >
             Learn more
           </a>
         </div>
       </div>
 
-      <div className="flex justify-between items-center pl-[140px] pr-[140px] w-full h-[284px] ">
+      <div className="flex flex-col md:flex-row justify-between items-center px-4 sm:px-8 md:px-[140px] w-full py-12">
         <img
           src={logo}
           alt="logo"
-          className="w-[110px] h-[110px] object-contain hidden md:block"
+          className="w-[80px] h-[80px] object-contain mb-6 md:mb-0 hidden md:block"
         />
 
-        <div>
+        <div className="text-center md:text-left">
           <h5 className="mb-4">Connect with us</h5>
-
           <a href="https://www.facebook.com/profile.php?id=61578929874937#">
             <img
               src={facebook}
               alt="facebook"
-              className="w-[54px] h-[54px] object-contain hidden md:block"
+              className="w-[40px] h-[40px] object-contain inline-block md:block"
             />
           </a>
         </div>
