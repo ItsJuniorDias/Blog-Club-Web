@@ -141,7 +141,7 @@ export default function App() {
       >
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden sm:">
           <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            <h1 className="text-4xl font-bold text-gray-900 mb-4">
               Welcome to the <span className="text-blue-600">Blog Club</span>
             </h1>
 
@@ -261,7 +261,7 @@ export default function App() {
               About the Blog Club
             </h5>
 
-            <p className="text-base leading-7 font-medium mt-6 text-gray-700">
+            <p className="text-base leading-7 font-medium mt-6 text-gray-900">
               Blog Club is a mobile app developed with React Native and Expo SDK
               53, designed to connect readers, writers, and content enthusiasts
               in one place. With a modern and intuitive interface, the app
@@ -269,7 +269,7 @@ export default function App() {
               participate in discussions through comments and direct messages.
             </p>
 
-            <p className="text-base leading-7 font-medium mt-6 text-gray-700">
+            <p className="text-base leading-7 font-medium mt-6 text-gray-900">
               Our goal is to make the reading experience more interactive and
               social. Therefore, we've integrated features such as real-time
               notifications, a favorites system, and a community area for
