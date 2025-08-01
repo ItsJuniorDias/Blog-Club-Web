@@ -142,7 +142,7 @@ export default function App() {
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden sm:">
           <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
             <h1 className="text-4xl font-bold text-gray-900 mb-4">
-              Welcome to the <span className="text-blue-600">Blog Club</span>
+              Welcome to the <span className="text-[#376AED]">Blog Club</span>
             </h1>
 
             <p className="text-gray-600 mb-6">
@@ -257,7 +257,7 @@ export default function App() {
 
         <div className="w-full lg:w-1/2 flex items-center justify-center">
           <div className="w-full max-w-[637px] bg-white shadow-lg rounded-2xl p-4 sm:p-6 md:p-8 lg:mr-[120px]">
-            <h5 className="text-2xl sm:text-3xl font-medium text-[#376AED]">
+            <h5 className="text-2xl sm:text-3xl font-bold text-[#376AED]">
               About the Blog Club
             </h5>
 
