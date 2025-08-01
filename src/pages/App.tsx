@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import background from "../assets/background.png";
+import custom_tech from "../assets/custom_tech.png";
 
 import { addDoc, collection, db, doc } from "../../firebaseConfig";
 
@@ -131,7 +133,7 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br bg-[#F8F8F8] flex items-center justify-center">
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden">
           <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -235,6 +237,39 @@ export default function App() {
               alt="Blog Club"
               className="h-[787px] w-full object-cover"
             />
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-[732px] bg-[#F8F8F8] flex">
+        <div className="w-1/2 flex items-center justify-center">
+          <img
+            src={custom_tech}
+            alt="tech"
+            className="w-[410px] h-[500 px] object-contain hidden md:block"
+          />
+        </div>
+
+        <div className=" flex items-center pr-[120px] justify-center  w-1/2">
+          <div className="w-[637px] h-auto bg-white shadow-lg rounded-4xl p-8 hidden md:block ">
+            <h5 className="text-3xl font-medium text-[#376AED]">
+              About the Blog Club
+            </h5>
+
+            <h1 className="text-[16px] leading-7  font-medium mt-5 text-gray-700">
+              Blog Club is a mobile app developed with React Native and Expo SDK
+              53, designed to connect readers, writers, and content enthusiasts
+              in one place. With a modern and intuitive interface, the app
+              allows users to discover new blogs, follow favorite authors, and
+              participate in discussions through comments and direct messages.
+              Our goal is to make the reading experience more interactive and
+              social. Therefore, we've integrated features such as real-time
+              notifications, a favorites system, and a community area for
+              members to exchange ideas. All of this with the performance and
+              flexibility provided by React Native technology. Whether you're a
+              content creator or someone looking for a good read, Blog Club is
+              the ideal space to explore, share, and connect.
+            </h1>
           </div>
         </div>
       </div>
