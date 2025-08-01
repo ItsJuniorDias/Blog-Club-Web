@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import background from "../assets/background.png";
 import custom_tech from "../assets/custom_tech.png";
+import logo from "../assets/logo.png";
+import facebook from "../assets/facebook.png";
 
 import { addDoc, collection, db, doc } from "../../firebaseConfig";
 
@@ -133,7 +135,10 @@ export default function App() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br bg-[#F8F8F8] flex items-center justify-center">
+      <div
+        id="topo"
+        className="min-h-screen bg-gradient-to-br bg-white flex items-center justify-center"
+      >
         <div className="max-w-6xl w-full bg-white shadow-lg rounded-2xl flex overflow-hidden">
           <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
             <h1 className="text-4xl font-bold text-gray-800 mb-4">
@@ -224,7 +229,7 @@ export default function App() {
 
               <button
                 type="submit"
-                className="w-full bg-[#376AED] text-white px-4 py-3 rounded-2xl"
+                className="w-full bg-[#376AED] hover:bg-[#2c57c2] text-white px-4 py-3 rounded-2xl"
               >
                 {mutation.isPending ? <Spinner /> : "Send"}
               </button>
@@ -246,7 +251,7 @@ export default function App() {
           <img
             src={custom_tech}
             alt="tech"
-            className="w-[410px] h-[500 px] object-contain hidden md:block"
+            className="w-[410px] h-[500 px] object-cover hidden md:block"
           />
         </div>
 
@@ -256,12 +261,15 @@ export default function App() {
               About the Blog Club
             </h5>
 
-            <h1 className="text-[16px] leading-7  font-medium mt-5 text-gray-700">
+            <h1 className="text-[16px] leading-7  font-medium mt-8 text-gray-700">
               Blog Club is a mobile app developed with React Native and Expo SDK
               53, designed to connect readers, writers, and content enthusiasts
               in one place. With a modern and intuitive interface, the app
               allows users to discover new blogs, follow favorite authors, and
               participate in discussions through comments and direct messages.
+            </h1>
+
+            <h1 className="text-[16px] leading-7  font-medium mt-8 text-gray-700">
               Our goal is to make the reading experience more interactive and
               social. Therefore, we've integrated features such as real-time
               notifications, a favorites system, and a community area for
@@ -271,6 +279,48 @@ export default function App() {
               the ideal space to explore, share, and connect.
             </h1>
           </div>
+        </div>
+      </div>
+
+      <div className="w-full h-auto  pl-[140px] pr-[140px]">
+        <div className="flex justify-between items-center  w-full h-[139px] bg-[#262626] p-8 rounded-3xl mt-[130px]">
+          <div>
+            <h5 className="text-[24px] text-white">
+              Want to know more about Blog Club?
+            </h5>
+
+            <h1 className=" text-white  ">
+              Fill out the form above or contact us. We'll show you how Blog
+              Club can transform your blogging experience!
+            </h1>
+          </div>
+
+          <a
+            href="#topo"
+            className="flex items-center justify-center w-[162px] h-[60px] bg-[#376AED]  hover:bg-[#2c57c2] text-white rounded-2xl"
+          >
+            Learn more
+          </a>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center pl-[140px] pr-[140px] w-full h-[284px] ">
+        <img
+          src={logo}
+          alt="logo"
+          className="w-[110px] h-[110px] object-contain hidden md:block"
+        />
+
+        <div>
+          <h5 className="mb-4">Connect with us</h5>
+
+          <a href="https://www.facebook.com/profile.php?id=61578929874937#">
+            <img
+              src={facebook}
+              alt="facebook"
+              className="w-[54px] h-[54px] object-contain hidden md:block"
+            />
+          </a>
         </div>
       </div>
 

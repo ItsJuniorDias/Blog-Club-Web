@@ -10,6 +10,10 @@
   font-style: normal;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 h1 {
   font-family: "Montserrat";
 }
@@ -27,6 +31,10 @@ h4 {
 }
 
 h5 {
+  font-family: "Montserrat";
+}
+
+a {
   font-family: "Montserrat";
 }
 
