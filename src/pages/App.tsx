@@ -4,6 +4,9 @@ import background from "../assets/background.png";
 import custom_tech from "../assets/custom_tech.png";
 import logo from "../assets/logo.png";
 import facebook from "../assets/facebook.png";
+import latest_1 from "../assets/latest_1.png";
+import latest_2 from "../assets/latest_2.png";
+import latest_3 from "../assets/latest_3.png";
 
 import { addDoc, collection, db, doc } from "../../firebaseConfig";
 
@@ -278,6 +281,72 @@ export default function App() {
               content creator or someone looking for a good read, Blog Club is
               the ideal space to explore, share, and connect.
             </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full h-auto pb-44 bg-[#F8F8F8]">
+        <div className="w-full flex justify-center">
+          <h5 className="font-bold text-3xl mb-16">Latest blog</h5>
+        </div>
+
+        <div className="flex items-center justify-evenly">
+          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+            <img
+              src={latest_1}
+              alt="latest_1"
+              className="w-[367px] h-[228px] object-cover"
+            />
+
+            <div className="p-4">
+              <h5 className="font-bold mt-4">
+                Understanding JavaScript: The Language of the Web{" "}
+              </h5>
+
+              <h1 className="font-medium mt-2">
+                JavaScript is one of the most important programming languages in
+                the world today...
+              </h1>
+            </div>
+          </div>
+
+          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+            <img
+              src={latest_2}
+              alt="latest_2"
+              className="w-[367px]  h-[228px]  rounded-3xl object-cover"
+            />
+
+            <div className="p-4">
+              <h5 className="font-bold mt-4">
+                👨‍💻 The Rise of the React Native Mobile Developer in 2025 
+              </h5>
+
+              <h1 className="font-medium mt-2">
+                companies want apps that look great and work smoothly on both
+                Android and...{" "}
+              </h1>
+            </div>
+          </div>
+
+          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+            <img
+              src={latest_3}
+              alt="latest_3"
+              className="w-[367px]  h-[228px] rounded-3xl object-cover"
+            />
+
+            <div className="p-4">
+              <h5 className="font-bold mt-4">
+                Mobile Developer with React Native and Expo: Building Apps
+                Faster{" "}
+              </h5>
+
+              <h1 className="font-medium mt-2">
+                A mobile developer using React Native with Expo focuses on
+                building cross-platform...
+              </h1>
+            </div>
           </div>
         </div>
       </div>
