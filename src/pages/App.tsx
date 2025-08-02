@@ -286,23 +286,22 @@ export default function App() {
       </div>
 
       <div className="w-full h-auto pb-44 bg-[#F8F8F8]">
-        <div className="w-full flex justify-center">
-          <h5 className="font-bold text-3xl mb-16">Latest blog</h5>
+        <div className="w-full flex justify-center px-4">
+          <h5 className="font-bold text-3xl mb-16 text-center">Latest blog</h5>
         </div>
 
-        <div className="flex items-center justify-evenly">
-          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+        <div className="flex flex-wrap justify-center gap-16 px-4">
+          {/* Card 1 */}
+          <div className="w-full max-w-sm rounded-3xl bg-white shadow-lg">
             <img
               src={latest_1}
               alt="latest_1"
-              className="w-[367px] h-[228px] object-cover"
+              className="w-full h-[228px] object-cover rounded-t-3xl"
             />
-
             <div className="p-4">
               <h5 className="font-bold mt-4">
-                Understanding JavaScript: The Language of the Web{" "}
+                Understanding JavaScript: The Language of the Web
               </h5>
-
               <h1 className="font-medium mt-2">
                 JavaScript is one of the most important programming languages in
                 the world today...
@@ -310,38 +309,36 @@ export default function App() {
             </div>
           </div>
 
-          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+          {/* Card 2 */}
+          <div className="w-full max-w-sm rounded-3xl bg-white shadow-lg">
             <img
               src={latest_2}
               alt="latest_2"
-              className="w-[367px]  h-[228px]  rounded-3xl object-cover"
+              className="w-full h-[228px] object-cover rounded-t-3xl"
             />
-
             <div className="p-4">
               <h5 className="font-bold mt-4">
-                👨‍💻 The Rise of the React Native Mobile Developer in 2025 
+                👨‍💻 The Rise of the React Native Mobile Developer in 2025
               </h5>
-
               <h1 className="font-medium mt-2">
-                companies want apps that look great and work smoothly on both
-                Android and...{" "}
+                Companies want apps that look great and work smoothly on both
+                Android and...
               </h1>
             </div>
           </div>
 
-          <div className="w-[367px] h-[433px] rounded-3xl bg-white shadow-lg ">
+          {/* Card 3 */}
+          <div className="w-full max-w-sm rounded-3xl bg-white shadow-lg">
             <img
               src={latest_3}
               alt="latest_3"
-              className="w-[367px]  h-[228px] rounded-3xl object-cover"
+              className="w-full h-[228px] object-cover rounded-t-3xl"
             />
-
             <div className="p-4">
               <h5 className="font-bold mt-4">
                 Mobile Developer with React Native and Expo: Building Apps
-                Faster{" "}
+                Faster
               </h5>
-
               <h1 className="font-medium mt-2">
                 A mobile developer using React Native with Expo focuses on
                 building cross-platform...
